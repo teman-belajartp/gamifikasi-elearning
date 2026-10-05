@@ -1,0 +1,205 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Journey to be Online Learning Experts — Pembelajaran Online</title>
+<style>
+:root{
+  --bg:#eef1f5;--card:#ffffff;--ink:#172033;--muted:#697386;--line:#dfe4eb;
+  --navy:#14233f;--primary:#5146a8;--primary2:#6b5bd4;--orange:#e89a3d;
+  --success:#2d8a6e;--warning:#d28a2d;--danger:#c95d68;
+  --shadow:0 10px 30px rgba(20,35,63,.08);--radius:18px;
+}
+*{box-sizing:border-box} body{margin:0;font-family:Inter,ui-sans-serif,system-ui,-apple-system,Segoe UI,sans-serif;background:var(--bg);color:var(--ink)}
+button,input,select,textarea{font:inherit} button{cursor:pointer}
+.app{display:flex;min-height:100vh}.sidebar{width:245px;background:var(--navy);color:#fff;padding:24px 16px;position:fixed;inset:0 auto 0 0}
+.logo{font-weight:800;font-size:18px;padding:8px 10px 26px}.logo span{color:#9b8cff}
+.nav button{display:block;width:100%;text-align:left;background:transparent;border:0;color:#c5ccda;padding:12px 13px;border-radius:12px;margin:5px 0}
+.nav button.active,.nav button:hover{background:#263552;color:#fff}.mini{font-size:12px;color:#8f97b0;padding:18px 10px 7px;text-transform:uppercase;letter-spacing:.08em}
+.main{margin-left:245px;width:calc(100% - 245px);padding:28px 34px}.top{display:flex;justify-content:space-between;align-items:center;margin-bottom:24px}
+.eyebrow{color:var(--primary);font-weight:700;font-size:13px}.title{font-size:28px;font-weight:800;margin:4px 0}.subtitle{color:var(--muted);font-size:14px}
+.btn{border:0;border-radius:11px;padding:10px 14px;background:var(--primary);color:#fff;font-weight:700}.btn.secondary{background:#eceafd;color:var(--primary)}
+.grid{display:grid;grid-template-columns:repeat(3,1fr);gap:16px}.stat,.card{background:var(--card);border:1px solid var(--line);border-radius:var(--radius);box-shadow:var(--shadow)}
+.stat{padding:18px}.stat .n{font-size:28px;font-weight:800}.stat .l{color:var(--muted);font-size:13px;margin-top:4px}
+.card{padding:20px;margin-top:18px}.card h2{font-size:17px;margin:0 0 4px}.muted{color:var(--muted)}
+.mission{display:grid;grid-template-columns:1.2fr .8fr;gap:18px}.missionMain{background:linear-gradient(135deg,#14233f,#5146a8);color:#fff;border-radius:var(--radius);padding:24px;box-shadow:var(--shadow)}
+.missionMain h2{font-size:24px;margin:4px 0 8px}.missionMain p{color:#e7e7ff}.missionBadge{font-size:46px}.pill{display:inline-flex;align-items:center;gap:6px;padding:6px 10px;border-radius:999px;background:#ffffff25;font-size:12px;font-weight:700}
+.checks{background:#fff;border:1px solid var(--line);border-radius:16px;padding:18px}.check{padding:11px 0;border-bottom:1px solid var(--line);display:flex;gap:9px;align-items:center}.check:last-child{border:0}
+.journey{display:flex;gap:0;align-items:flex-start;overflow:auto;padding:15px 4px 8px}.step{min-width:100px;text-align:center;position:relative}.step:not(:last-child):after{content:"";position:absolute;top:27px;left:67px;width:66px;height:3px;background:#e2e5ef}.step.done:not(:last-child):after{background:#8e88f3}.icon{width:54px;height:54px;border-radius:50%;margin:auto;background:#e9edf2;display:grid;place-items:center;font-size:25px;border:3px solid #fff;box-shadow:0 0 0 1px #dfe3ee}.done .icon{background:#eceafd;box-shadow:0 0 0 2px #6558bd}.current .icon{background:#fff1df;box-shadow:0 0 0 3px var(--orange)}.step b{display:block;font-size:11px;margin-top:8px}.step small{color:var(--muted);font-size:10px}
+.progress{height:8px;background:#edf0f5;border-radius:99px;overflow:hidden}.progress i{display:block;height:100%;background:linear-gradient(90deg,#5146a8,#7567cf);border-radius:99px}
+.groups{display:grid;grid-template-columns:repeat(3,1fr);gap:14px}.group{padding:17px;background:#fff;border:1px solid var(--line);border-radius:16px;box-shadow:0 5px 18px rgba(25,35,65,.05);cursor:pointer}.group:hover{transform:translateY(-2px);transition:.15s}.groupTop{display:flex;justify-content:space-between;gap:8px}.trend{font-size:11px;padding:5px 8px;background:#eeecfa;color:#5146a8;border-radius:999px;font-weight:700}.xp{font-weight:800}.gname{font-weight:800;margin:12px 0 4px}.status{font-size:11px;font-weight:700;margin:9px 0}.green{color:var(--success)}.yellow{color:#b77718}.red{color:var(--danger)}
+.alert{padding:13px 15px;border-radius:12px;background:#fff4e5;border:1px solid #f0d2a5;margin-top:12px;font-size:13px}.alert b{color:#a66a1e}
+.filters{display:flex;gap:9px;flex-wrap:wrap;margin-bottom:14px}.filters select,.filters input{border:1px solid var(--line);background:#fff;border-radius:10px;padding:9px 11px}
+.page{display:none}.page.active{display:block}.small{font-size:12px}
+.table{width:100%;border-collapse:collapse}.table th,.table td{text-align:left;padding:12px 9px;border-bottom:1px solid var(--line);font-size:13px}.table th{color:var(--muted);font-size:11px;text-transform:uppercase}
+.modal{position:fixed;inset:0;background:#11152a88;display:none;align-items:center;justify-content:center;padding:20px;z-index:20}.modal.show{display:flex}.modalBox{background:#fff;border-radius:20px;max-width:620px;width:100%;padding:24px;box-shadow:0 30px 70px #0003}.modalHead{display:flex;justify-content:space-between}.close{border:0;background:#f1f2f6;border-radius:50%;width:34px;height:34px}
+textarea{width:100%;min-height:80px;border:1px solid var(--line);border-radius:10px;padding:10px;margin-top:7px}.xpBtns{display:flex;gap:9px;margin:12px 0}.xpBtn{flex:1;border:1px solid var(--line);background:#f8f9fc;border-radius:11px;padding:12px;font-weight:800}.xpBtn.selected{background:#e9e8ff;border-color:#7770ed;color:#514fc5}
+.footerNote{color:var(--muted);font-size:11px;margin-top:18px}
+@media(max-width:1000px){.sidebar{width:200px}.main{margin-left:200px;width:calc(100% - 200px)}.groups{grid-template-columns:repeat(2,1fr)}.mission{grid-template-columns:1fr}}
+@media(max-width:700px){.sidebar{position:static;width:100%;height:auto}.app{display:block}.main{margin:0;width:100%;padding:18px}.grid,.groups{grid-template-columns:1fr}.top{align-items:flex-start;gap:12px}.journey{padding-bottom:15px}}
+</style>
+</head>
+<body>
+<div class="app">
+<aside class="sidebar">
+  <div class="logo">🎮 Journey <span>to be Online Learning Experts</span></div>
+  <div class="mini">Navigation</div>
+  <div class="nav">
+    <button class="active" onclick="showPage('dashboard',this)">🏠 Dashboard</button>
+    <button onclick="showPage('missions',this)">🎯 Missions</button>
+    <button onclick="showPage('groups',this)">👥 Groups</button>
+    <button onclick="showPage('journey',this)">🏅 Badge Journey</button>
+    <button onclick="showPage('analytics',this)">📊 Analytics</button>
+  </div>
+  <div class="mini">Course</div>
+  <div style="padding:0 10px;font-size:13px;color:#cdd2e3;line-height:1.6">Pembelajaran Online<br>Semester V · 3 SKS<br><span style="display:block;margin-top:8px;color:#aeb5cc">Dosen: Sella Mawarni, M. Pd.</span></div>
+</aside>
+
+<main class="main">
+<section id="dashboard" class="page active">
+  <div class="top">
+    <div><div class="eyebrow">LECTURER VIEW</div><div class="title">Project Mission Control</div><div class="subtitle">Pantau perjalanan proyek setiap kelompok secara visual.</div><div class="small muted" style="margin-top:5px">Dosen: Sella Mawarni, M. Pd. · 3 SKS</div></div>
+    <button class="btn" onclick="openModal(0)">✏️ Input Progress</button>
+  </div>
+
+  <div class="grid">
+    <div class="stat"><div class="n" id="statGroups">9</div><div class="l">Kelompok</div></div>
+    <div class="stat"><div class="n" id="statXP">0 / 1800</div><div class="l">XP terkumpul</div></div>
+    <div class="stat"><div class="n" id="statDone">0 / 90</div><div class="l">Misi tuntas</div></div>
+  </div>
+
+  <div class="card mission">
+    <div class="missionMain">
+      <span class="pill">🔥 MISSION AKTIF · PEKAN 7</span>
+      <div class="missionBadge">🏗️</div>
+      <h2>LMS Builder</h2>
+      <p>Bangun markas awal pembelajaran kelompokmu: LMS, identitas kelas, pengantar, struktur awal, dan mulai tampilkan tren yang dipilih.</p>
+      <button class="btn secondary" onclick="showPage('missions',document.querySelectorAll('.nav button')[1])">Lihat Kriteria Misi →</button>
+    </div>
+    <div class="checks">
+      <h2>Target Misi</h2>
+      <div class="check">☐ LMS dapat diakses</div>
+      <div class="check">☐ Identitas/nama kelas</div>
+      <div class="check">☐ Deskripsi & pengantar</div>
+      <div class="check">☐ Struktur awal kelas</div>
+      <div class="check">☐ Tren pembelajaran terlihat</div>
+      <div class="check">☐ Link LMS sebagai evidence</div>
+    </div>
+  </div>
+
+  <div class="card">
+    <h2>🚀 Project Journey</h2><div class="muted small">10 milestone · maksimal 200 XP per kelompok</div>
+    <div class="journey" id="journeyDash"></div>
+  </div>
+
+  <div class="card">
+    <div style="display:flex;justify-content:space-between;align-items:center"><div><h2>👥 Group Progress</h2><div class="muted small">Klik kartu untuk membuka detail kelompok.</div></div><button class="btn secondary" onclick="showPage('groups',document.querySelectorAll('.nav button')[2])">Lihat semua</button></div>
+    <div class="groups" id="groupGrid" style="margin-top:14px"></div>
+  </div>
+</section>
+
+<section id="missions" class="page">
+  <div class="top"><div><div class="eyebrow">MISSION BOARD</div><div class="title">Missions & Criteria</div><div class="subtitle">Setiap milestone memiliki target sederhana dan reward XP.</div></div></div>
+  <div id="missionList"></div>
+</section>
+
+<section id="groups" class="page">
+  <div class="top"><div><div class="eyebrow">GROUP MONITORING</div><div class="title">All Groups</div><div class="subtitle">Progress proyek berdasarkan kelompok.</div></div><button class="btn" onclick="openModal(0)">✏️ Input Progress</button></div>
+  <div class="filters"><select id="trendFilter" onchange="renderGroups()"><option value="">Semua tren</option><option>Microlearning</option><option>Gamifikasi</option><option>AI-Assisted Learning</option><option>Video Interactive</option><option>Belum ditetapkan</option></select><select id="sortFilter" onchange="renderGroups()"><option value="xp">XP tertinggi</option><option value="name">Nama kelompok</option><option value="risk">Perlu perhatian</option></select></div>
+  <div class="groups" id="allGroups"></div>
+</section>
+
+<section id="journey" class="page">
+  <div class="top"><div><div class="eyebrow">BADGE SYSTEM</div><div class="title">Badge Journey</div><div class="subtitle">Badge terbuka ketika milestone mencapai 20 XP.</div></div></div>
+  <div class="card"><div class="journey" id="journeyFull"></div></div>
+  <div class="card"><h2>🏅 Badge Collection</h2><div class="groups" id="badgeGrid" style="margin-top:14px"></div></div>
+</section>
+
+<section id="analytics" class="page">
+  <div class="top"><div><div class="eyebrow">LECTURER INSIGHT</div><div class="title">Progress Analytics</div><div class="subtitle">Membantu melihat titik yang mulai membutuhkan intervensi.</div></div></div>
+  <div class="card"><h2>📈 Completion per Milestone</h2><div class="muted small">Jumlah kelompok yang sudah mencapai 20 XP.</div><div id="analyticsBars" style="margin-top:18px"></div></div>
+  <div class="card"><h2>⚠️ Need Attention</h2><div id="alerts"></div></div>
+</section>
+</main>
+</div>
+
+<div class="modal" id="modal">
+<div class="modalBox">
+  <div class="modalHead"><div><div class="eyebrow">UPDATE PROGRESS</div><h2 id="modalTitle" style="margin:4px 0">Input Progress</h2></div><button class="close" onclick="closeModal()">×</button></div>
+  <label class="small muted">Kelompok</label>
+  <select id="mGroup" style="width:100%;padding:10px;border:1px solid var(--line);border-radius:10px;margin:6px 0 12px"></select>
+  <label class="small muted">Milestone</label>
+  <select id="mMilestone" style="width:100%;padding:10px;border:1px solid var(--line);border-radius:10px;margin:6px 0 12px"></select>
+  <div class="small muted">Reward XP</div>
+  <div class="xpBtns"><button class="xpBtn" data-xp="0">0 XP<br><span class="small">Belum mulai</span></button><button class="xpBtn" data-xp="10">10 XP<br><span class="small">Proses</span></button><button class="xpBtn" data-xp="20">20 XP<br><span class="small">Tuntas 🏅</span></button></div>
+  <label class="small muted">Evidence / Link LMS</label><input id="mLink" placeholder="https://..." style="width:100%;padding:10px;border:1px solid var(--line);border-radius:10px;margin:6px 0 12px">
+  <label class="small muted">Catatan dosen</label><textarea id="mNote" placeholder="Feedback atau catatan singkat..."></textarea>
+  <div style="display:flex;justify-content:flex-end;gap:9px;margin-top:14px"><button class="btn secondary" onclick="closeModal()">Batal</button><button class="btn" onclick="saveProgress()">Simpan Progress</button></div>
+</div></div>
+
+<script>
+const milestones=[
+ {w:"W7",icon:"🏗️",name:"LMS Builder",target:"LMS aktif, identitas kelas, pengantar, struktur awal, tren terlihat."},
+ {w:"UTS",icon:"🗺️",name:"Course Architect",target:"Desain dan struktur online class siap dipresentasikan."},
+ {w:"W9",icon:"📚",name:"Resource Hunter",target:"Sumber belajar relevan terpilih dan terorganisasi."},
+ {w:"W10",icon:"🧩",name:"Content Creator",target:"Konten pembelajaran mulai dikembangkan dalam LMS."},
+ {w:"W11",icon:"🎯",name:"Learning Evaluator",target:"Instrumen/aktivitas evaluasi pembelajaran tersedia."},
+ {w:"W12",icon:"⚙️",name:"LMS Integrator",target:"Evaluasi terintegrasi ke dalam LMS."},
+ {w:"W13",icon:"🎮",name:"Engagement Designer",target:"Tren pilihan diperkuat dalam pengalaman belajar."},
+ {w:"W14",icon:"🔍",name:"Quality Checker",target:"Kualitas online class dievaluasi."},
+ {w:"W15",icon:"✨",name:"Project Polisher",target:"Revisi dan finalisasi berdasarkan evaluasi."},
+ {w:"UAS",icon:"🏆",name:"E-Learning Master",target:"Online class final, presentasi, dan laporan evaluasi kualitas."}
+];
+const groups=[
+["Kelompok 1 — Muhammad Zulfikar Mustari, dkk.","Microlearning","Muhammad Zulfikar Mustari, Pira, Serli Agustiani"],
+["Kelompok 2 — Andi Syafana Auritsa, dkk.","Microlearning","Andi Syafana Auritsa, Nurul Annisa, Aqila Badrani Al Fatihah"],
+["Kelompok 3 — Qanita Nur' Jinan, dkk.","AI-Assisted Learning","Qanita Nur' Jinan, Bintang Fridayanti, Anisya Fitri"],
+["Kelompok 4 — Andi Sri Resky Mawarni, dkk.","Microlearning","Andi Sri Resky Mawarni, St. Fauziyyah Faris, Nur Azizah Dwi Rahmania"],
+["Kelompok 5 — Ghina Raudatul Jannah, dkk.","Gamifikasi","Ghina Raudatul Jannah, Fatin Nabila, Alya Risma"],
+["Kelompok 6 — Zakirah Faiqah Shari, dkk.","Gamifikasi","Zakirah Faiqah Shari, Humaema, Agnes Avelina Juita"],
+["Kelompok 7 — Abd. Rahman, dkk.","AI-Assisted Learning","Abd. Rahman, Masriyandi, Assaldian Dwi Karna"],
+["Kelompok 8 — Waode Cahya Makrifat, dkk.","Video Interactive","Waode Cahya Makrifat, Alena Vanessa Permata, Naufal Tri Mananda"],
+["Kelompok 9 — Muh. Alfian, dkk.","Belum ditetapkan","Muh. Alfian, Muhammad Miftah Ramadhan, Restu Dwiphayana Hasyam"]
+];
+let data=JSON.parse(localStorage.getItem("pbj_v2")||"null")||groups.map((g,i)=>({name:g[0],trend:g[1],members:g[2],xp:Array(10).fill(0),links:Array(10).fill(""),notes:Array(10).fill("")}));
+function saveStore(){localStorage.setItem("pbj_v2",JSON.stringify(data))}
+function total(g){return g.xp.reduce((a,b)=>a+b,0)}
+function done(g){return g.xp.filter(x=>x===20).length}
+function status(g){let t=total(g); if(t>=160)return ["ON TRACK","green"]; if(t>=60)return ["CATCHING UP","yellow"]; return ["NEEDS ATTENTION","red"]}
+function journey(elId){
+ const el=document.getElementById(elId);el.innerHTML=milestones.map((m,i)=>`<div class="step ${i<2?'done':''} ${i===2?'current':''}">
+ <div class="icon">${m.icon}</div><b>${m.w}</b><small>${m.name}</small></div>`).join("");
+}
+function card(g,idx){
+ const [st,cl]=status(g),t=total(g);
+ return `<div class="group" onclick="openModal(${idx})"><div class="groupTop"><span class="trend">${g.trend}</span><span class="xp">${t}/200 XP</span></div>
+ <div class="gname">${g.name}</div><div class="small muted">${g.members}</div>
+ <div style="margin-top:13px" class="progress"><i style="width:${t/2}%"></i></div>
+ <div class="status ${cl}">${st} · ${done(g)}/10 badge</div>
+ <div class="small muted">Klik untuk input / melihat progress →</div></div>`
+}
+function renderGroups(){
+ let arr=[...data],tf=document.getElementById("trendFilter")?.value||"",sf=document.getElementById("sortFilter")?.value||"xp";
+ if(tf)arr=arr.filter(g=>g.trend===tf);
+ if(sf==="xp")arr.sort((a,b)=>total(b)-total(a)); else if(sf==="name")arr.sort((a,b)=>a.name.localeCompare(b.name)); else arr.sort((a,b)=>total(a)-total(b));
+ document.getElementById("allGroups").innerHTML=arr.map(g=>card(g,data.indexOf(g))).join("");
+ document.getElementById("groupGrid").innerHTML=[...data].sort((a,b)=>total(b)-total(a)).slice(0,6).map(g=>card(g,data.indexOf(g))).join("");
+}
+function renderStats(){let xp=data.reduce((a,g)=>a+total(g),0),dn=data.reduce((a,g)=>a+done(g),0);document.getElementById("statXP").textContent=`${xp} / 1800`;document.getElementById("statDone").textContent=`${dn} / 90`}
+function renderMissions(){document.getElementById("missionList").innerHTML=milestones.map((m,i)=>`<div class="card"><div style="display:flex;gap:15px;align-items:center"><div style="font-size:38px">${m.icon}</div><div style="flex:1"><div class="eyebrow">${m.w}</div><h2>${m.name}</h2><div class="muted">${m.target}</div></div><button class="btn secondary" onclick="openModal(0,${i})">Input XP</button></div><div class="small muted" style="margin-top:12px">0 XP = belum mulai · 10 XP = proses · 20 XP = tuntas & badge terbuka</div></div>`).join("")}
+function renderBadges(){document.getElementById("badgeGrid").innerHTML=milestones.map((m,i)=>`<div class="group"><div style="font-size:38px">${m.icon}</div><div class="gname">${m.name}</div><div class="small muted">${data.filter(g=>g.xp[i]===20).length} kelompok meraih badge</div><div class="progress" style="margin-top:10px"><i style="width:${data.filter(g=>g.xp[i]===20).length/9*100}%"></i></div></div>`).join("")}
+function renderAnalytics(){document.getElementById("analyticsBars").innerHTML=milestones.map((m,i)=>{let n=data.filter(g=>g.xp[i]===20).length;return `<div style="margin:14px 0"><div style="display:flex;justify-content:space-between;font-size:12px"><b>${m.icon} ${m.w} — ${m.name}</b><span>${n}/9 tuntas</span></div><div class="progress" style="margin-top:6px"><i style="width:${n/9*100}%"></i></div></div>`}).join("");
+let alerts=data.filter(g=>total(g)<60).slice(0,5);document.getElementById("alerts").innerHTML=alerts.length?alerts.map(g=>`<div class="alert">⚠️ <b>${g.name}</b> perlu perhatian — baru ${total(g)}/200 XP.</div>`).join(""):`<div class="alert" style="background:#eaf8f3;border-color:#c7eadc"><b>Semua kelompok berada pada progress aman.</b></div>`}
+function showPage(id,btn){document.querySelectorAll(".page").forEach(x=>x.classList.remove("active"));document.getElementById(id).classList.add("active");document.querySelectorAll(".nav button").forEach(x=>x.classList.remove("active"));if(btn)btn.classList.add("active");renderAll()}
+function renderAll(){renderStats();renderGroups();renderMissions();journey("journeyDash");journey("journeyFull");renderBadges();renderAnalytics()}
+function openModal(idx=0,mi=null){const modal=document.getElementById("modal");document.getElementById("mGroup").innerHTML=data.map((g,i)=>`<option value="${i}">${g.name} — ${g.trend}</option>`).join("");document.getElementById("mMilestone").innerHTML=milestones.map((m,i)=>`<option value="${i}">${m.w} — ${m.name}</option>`).join("");document.getElementById("mGroup").value=idx;if(mi!==null)document.getElementById("mMilestone").value=mi;loadForm();modal.classList.add("show")}
+function loadForm(){let gi=+document.getElementById("mGroup").value,mi=+document.getElementById("mMilestone").value,g=data[gi],xp=g.xp[mi];document.querySelectorAll(".xpBtn").forEach(b=>b.classList.toggle("selected",+b.dataset.xp===xp));document.getElementById("mLink").value=g.links[mi]||"";document.getElementById("mNote").value=g.notes[mi]||"";document.getElementById("modalTitle").textContent=`${g.name} · ${milestones[mi].name}`}
+document.getElementById("mGroup").addEventListener("change",loadForm);document.getElementById("mMilestone").addEventListener("change",loadForm);
+document.querySelectorAll(".xpBtn").forEach(b=>b.onclick=()=>{document.querySelectorAll(".xpBtn").forEach(x=>x.classList.remove("selected"));b.classList.add("selected")});
+function saveProgress(){let gi=+document.getElementById("mGroup").value,mi=+document.getElementById("mMilestone").value,sel=document.querySelector(".xpBtn.selected");data[gi].xp[mi]=+sel.dataset.xp;data[gi].links[mi]=document.getElementById("mLink").value;data[gi].notes[mi]=document.getElementById("mNote").value;saveStore();closeModal();renderAll()}
+function closeModal(){document.getElementById("modal").classList.remove("show")}
+renderAll();
+</script>
+</body>
+</html>
